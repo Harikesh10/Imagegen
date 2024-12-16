@@ -9,37 +9,49 @@ st.set_page_config(page_title="Enhanced Text-to-Image Generator", page_icon=":ar
 
 # Load Stable Diffusion and Anime models with CPU optimizations
 @st.cache_resource
-def load_models():
-    try:
-        models = {
-            "Standard": StableDiffusionPipeline.from_pretrained(
-                "runwayml/stable-diffusion-v1-5", 
-                torch_dtype=torch.float32,
-                low_cpu_mem_usage=True
-            ).to("cpu"),
-            "Anime": StableDiffusionPipeline.from_pretrained(
-                "hakurei/waifu-diffusion", 
-                torch_dtype=torch.float32,
-                low_cpu_mem_usage=True
-            ).to("cpu")
+def load_models(device):
+    models = {
+        "Standard": StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5").to(device),
+        "Anime": StableDiffusionPipeline.from_pretrained("hakurei/waifu-diffusion").to(device),
+    }
+    return models
+
+# Device selection
+st.sidebar.header("Device Options")
+device_choice = st.sidebar.radio("Choose the device for processing", ["cpu", "cuda"], index=0)
+
+# Load models based on selected device
+models = load_models(device_choice)
+
+# Title and Description with styling
+st.markdown(
+    """
+    <style>
+        .main-title {
+            font-size: 2.5em;
+            color: #444DAD;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
         }
-        
-        # Apply global optimizations
-        for model in models.values():
-            model.enable_attention_slicing()
-            model.enable_vae_slicing()
-        
-        return models
-    except Exception as e:
-        st.error(f"Model loading error: {e}")
-        return {}
-
-# Load models
-models = load_models()
-
-# Title and Description
-st.title("🎨 Enhanced Text-to-Image Generator")
-st.write("Generate stunning images with multiple models, styles, and advanced preferences!")
+        .sub-title {
+            font-size: 1.2em;
+            color: white;
+            font-family: 'Verdana', sans-serif;
+        }
+        .generate-button {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+    <h1 class="main-title">🎨 Enhanced Text-to-Image Generator</h1>
+    <p class="sub-title">Generate stunning images with multiple models, styles, and advanced preferences!</p>
+    """,
+    unsafe_allow_html=True
+)
 
 # Sidebar Configuration
 st.sidebar.header("🔧 Model Settings")
@@ -90,7 +102,7 @@ def make_realistic(image):
 
 # Main Input Section
 prompt = st.text_input("✍️ Enter your image description", placeholder="A fantasy castle on a hill during sunset")
-generate_button = st.button("🖌️ Generate Image")
+generate_button = st.button("🖌️ Generate Image", key="generate", use_container_width=True, help="Click to generate the image", args=("class", "generate-button"))
 
 # Image Generation
 if generate_button:
