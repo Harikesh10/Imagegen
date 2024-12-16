@@ -5,14 +5,19 @@ import io
 
 # Load Stable Diffusion and Anime models
 @st.cache_resource
-def load_models():
+def load_models(device):
     models = {
-        "Standard": StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5").to("cpu"),
-        "Anime": StableDiffusionPipeline.from_pretrained("hakurei/waifu-diffusion").to("cpu"),
+        "Standard": StableDiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5").to(device),
+        "Anime": StableDiffusionPipeline.from_pretrained("hakurei/waifu-diffusion").to(device),
     }
     return models
 
-models = load_models()
+# Device selection cpu or gpu
+st.sidebar.header("Device Options")
+device_choice = st.sidebar.radio("Choose the device for processing", ["cpu", "cuda"], index=0)
+
+# Load models based on selected device
+models = load_models(device_choice)
 
 # App Title
 st.title("Enhanced Text-to-Image Generator")
