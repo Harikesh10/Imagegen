@@ -11,7 +11,7 @@ Welcome to the **Cool Text-to-Image Generator**! This app uses the Stable Diffus
 
 ---
 
-## 📋 Requirements 📋
+##  Requirements 
 
 To run this project locally, ensure Python is installed along with the following dependencies:
 
@@ -29,14 +29,14 @@ pip install streamlit diffusers transformers Pillow torch
 
 ---
 
-## 🗂️ Files 🗂️
+##  Files 
 
 - `app.py`: The main Streamlit application file to run the Text-to-Image Generator. 📄
 - `README.md`: This file, explaining the project. 📋
 
 ---
 
-## 🚀 How to Run 🚀
+## How to Run 
 
 1. Install the required dependencies (as mentioned above).
 2. Place the `app.py` file in your working directory.
@@ -50,7 +50,7 @@ This will launch a local server and open the app in your default browser. 🌐
 
 ---
 
-## 💡 Usage 💡
+##  Usage 
 
 ### Main Interface:
 
@@ -70,13 +70,13 @@ This will launch a local server and open the app in your default browser. 🌐
 
 ---
 
-## 🤖 Model Details 🤖
+##  Model Details 
 
 This project uses the **Stable Diffusion v1.5** model from `runwayml`, loaded via the Diffusers library. The model runs on the CPU, making it accessible for most systems.
 
 ---
 
-## ⚠️ Troubleshooting ⚠️
+##  Troubleshooting 
 
 - Ensure all dependencies are installed and up to date.
 - If encountering issues with image generation, check your system's available memory and adjust the image dimensions accordingly.
@@ -84,7 +84,7 @@ This project uses the **Stable Diffusion v1.5** model from `runwayml`, loaded vi
 
 ---
 
-## 📜 License 📜
+##  License 
 
 This project is licensed under the MIT License. See the LICENSE file for more details. 📃
 
