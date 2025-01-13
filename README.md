@@ -89,4 +89,6 @@ This project uses the **Stable Diffusion v1.5** model from `runwayml`, loaded vi
 This project is licensed under the MIT License. See the LICENSE file for more details. 📃
 
 
-This is a cool looking readme.md file , just love creating this piece!!!!
+This is a cool looking readme.md file , just love creating this piece
+
+The is just a minor edit
