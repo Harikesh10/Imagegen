@@ -1,4 +1,4 @@
-#  Cool Text-to-Image Generator 
+#  Text-to-Image Generator Application
 
 Welcome to the **Cool Text-to-Image Generator**! This app uses the Stable Diffusion model to generate stunning images from your text prompts. Let your creativity flow and see your ideas come to life! 🎨✨
 
